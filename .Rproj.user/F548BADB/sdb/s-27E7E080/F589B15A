@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n\ngeneratePlumbedFile <- function(r_table, path = tempfile()){\n\n  r_table <- substitute(r_table)\n\n  template <- readLines(\"templates/plumbed_data_template.R\")\n\n  writeLines(whisker::whisker.render(template), con=path)\n\n}\n\nservePlumbedFile <- function(plumbed_path, port=DEFAULT_PORT){\n  r <- plumber::plumb(plumbed_path)\n\n  r$run(port=port)\n\n}\n\n",
+    "created" : 1523819315601.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2681149382",
+    "id" : "F589B15A",
+    "lastKnownWriteTime" : 1523820645,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Angus Moir/RProjects/wdcconnector/R/wdc-serve.R",
+    "project_path" : "R/wdc-serve.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

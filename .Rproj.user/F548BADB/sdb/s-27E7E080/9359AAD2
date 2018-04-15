@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "SCHEMA_PREFIX <- \"var tableSchema = \"\n\ngenerateWDCSchemaJS <- function(table) {\n  table_name <- substitute(table)\n\n  table_schema <- glue::glue('id: \\\"{table_name}\\\",\\ncolumns: cols')\n\n  table_schema <- addBraces(bracketNewLines(table_schema))\n\n  paste0(SCHEMA_PREFIX, table_schema)\n}\n\n",
+    "created" : 1523821150351.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "901633459",
+    "id" : "9359AAD2",
+    "lastKnownWriteTime" : 1523821229,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Angus Moir/RProjects/wdcconnector/R/schema.R",
+    "project_path" : "R/schema.R",
+    "properties" : {
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

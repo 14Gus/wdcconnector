@@ -1,0 +1,5 @@
+
+#' @get /data
+function() {
+  mtcars
+}

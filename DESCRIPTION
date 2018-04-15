@@ -1,0 +1,13 @@
+Package: wdcconnector
+Type: Package
+Title: Connect an R dataframe to Tableau's Web Data Connector dynamically
+Version: 0.1.0
+Author: Angus Moir
+Maintainer: Angus Moir <a.h.moir@gmail.com>
+Description: Generates dynamically the HTML and JS needed to serve up an R dataframe that can be connected to using Tableau's Web Data Connector.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat
+Imports: glue,
+    whisker

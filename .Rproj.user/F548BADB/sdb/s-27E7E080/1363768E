@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\ngenerateWDCHTML <- function(js_script_path){\n\n  template <- readLines(\"templates/WDC_template.html\")\n\n  whisker::whisker.render(template)\n}\n",
+    "created" : 1523818741924.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2864601252",
+    "id" : "1363768E",
+    "lastKnownWriteTime" : 1523820695,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Angus Moir/RProjects/wdcconnector/R/wdc-html.R",
+    "project_path" : "R/wdc-html.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

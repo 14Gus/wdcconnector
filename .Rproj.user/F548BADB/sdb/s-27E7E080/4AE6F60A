@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#' @get /data\nfunction() {\n  {{r_table}}\n}\n\n#' @get /WDC\n#' @html\nfunction(){\n\n  generateWDCHTML(js_script_dir)\n\n}\n",
+    "created" : 1523816539885.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3588953358",
+    "id" : "4AE6F60A",
+    "lastKnownWriteTime" : 1523819147,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Angus Moir/RProjects/wdcconnector/templates/plumbed_data_template.R",
+    "project_path" : "templates/plumbed_data_template.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "TABLEAU_TYPE_ENUM_BASE <- \"tableau.dataTypeEnum.\"\nCOLS_PREFIX <- \"var cols = \"\n\n\ngenerateWDCColumnsJS <- function(table){\n  types <- sapply(table, class)\n\n  col_names <- colnames(table)\n\n  cols <- mapply(generateWDCColumnJS, col_names, types)\n\n  cols <- addSquareBrackets(paste0(cols, collapse = \",\"))\n\n  paste0(COLS_PREFIX, cols)\n}\n\n\ngenerateWDCColumnJS <- function(column_name, type){\n\n  tableau_type_enum <- generateTableauTypeEnum(type)\n\n  out <- glue::glue('id: \"{column_name}\",\n  dataType: {tableau_type_enum}')\n\n  addBraces(bracketNewLines(out))\n\n}\n\ngenerateTableauTypeEnum <- function(r_type){\n\n  tableau_type <- mapRTypeToTableau(r_type)\n\n  paste0(TABLEAU_TYPE_ENUM_BASE, tableau_type)\n\n}\n\nmapRTypeToTableau <- function(r_type){\n\n  switch(r_type\n         ,\"numeric\" = \"float\"\n         ,\"date\" = \"date\"\n         ,\"character\" = \"string\"\n         ,\"factor\" = \"string\"\n         ,\"logical\" = \"bool\"\n         ,\"double\" = \"float\"\n         ,\"integer\" = \"int\"\n         ,\"single\" = \"float\"\n         , stop(glue::glue(\"No corresponding tableau type found for {r_type}\"))\n         )\n\n}\n\n\n",
+    "created" : 1523728381424.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "343913123",
+    "id" : "679D516C",
+    "lastKnownWriteTime" : 1523795441,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/Angus Moir/RProjects/wdcconnector/R/columns.R",
+    "project_path" : "R/columns.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
