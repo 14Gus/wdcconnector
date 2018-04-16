@@ -6,7 +6,7 @@
 #' @export
 #' @example generateWDCJS(mtcars)
 #'
-generateWDCJS <- function(table, con=stdout()){
+generateWDCJS <- function(table){
 
   template <- readLines("templates/WDC_template.js")
 
@@ -15,5 +15,5 @@ generateWDCJS <- function(table, con=stdout()){
                 , get_data_js = generateWDCGetDataJS(table)
                 )
 
-  writeLines(whisker::whisker.render(template, data), con = con)
+  whisker::whisker.render(template, data)
 }

@@ -29,7 +29,7 @@ test_that("generates column correctly",{
   dataType: tableau.dataTypeEnum.string
   }'
 
-  col <- generateWDCColumnJS(test_column)
+  col <- generateWDCColumnJS(column_name = "id",type = "character")
 
   expect_equal(col, expected)
 
@@ -37,13 +37,13 @@ test_that("generates column correctly",{
 
 test_that("maps R to tableau datatype",{
 
-  expect_equal(mapRTypeToTableau("numeric", "tableau.dataTypeEnum.float"))
-  expect_equal(mapRTypeToTableau("character", "tableau.dataTypeEnum.string"))
-  expect_equal(mapRTypeToTableau("logical", "tableau.dataTypeEnum.bool"))
-  expect_equal(mapRTypeToTableau("date", "tableau.dataTypeEnum.date"))
-  expect_equal(mapRTypeToTableau("integer", "tableau.dataTypeEnum.int"))
-  expect_equal(mapRTypeToTableau("factor", "tableau.dataTypeEnum.string"))
-  expect_equal(mapRTypeToTableau("double", "tableau.dataTypeEnum.float"))
+  expect_equal(mapRTypeToTableau("numeric"), "tableau.dataTypeEnum.float")
+  expect_equal(mapRTypeToTableau("character"), "tableau.dataTypeEnum.string")
+  expect_equal(mapRTypeToTableau("logical"), "tableau.dataTypeEnum.bool")
+  expect_equal(mapRTypeToTableau("date"), "tableau.dataTypeEnum.date")
+  expect_equal(mapRTypeToTableau("integer"), "tableau.dataTypeEnum.int")
+  expect_equal(mapRTypeToTableau("factor"), "tableau.dataTypeEnum.string")
+  expect_equal(mapRTypeToTableau("double"), "tableau.dataTypeEnum.float")
 
 })
 
