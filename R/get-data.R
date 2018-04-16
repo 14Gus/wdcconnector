@@ -1,21 +1,3 @@
-
-GET_DATA_TEMPLATE <- 'myConnector.getData = function(table, doneCallback) {
-  $.getJSON("{{data_URL}}", function(resp) {
-    var data = resp,
-    tableData = [];
-
-    // Iterate over the JSON object
-    for (var i = 0, len = data.length; i < len; i++) {
-      tableData.push({
-        {{{get_data_js}}}
-      });
-    }
-
-    table.appendRows(tableData);
-    doneCallback();
-  });
-};'
-
 generateWDCGetDataJS <- function(table){
   col_names <- colnames(table)
 
@@ -25,10 +7,12 @@ generateWDCGetDataJS <- function(table){
 
   data_URL <- "http://127.0.0.1:8000/data"
 
-  whisker::whisker.render(GET_DATA_TEMPLATE)
+  template <- getTemplate("WDC_getData_template.js")
+
+  whisker::whisker.render(template)
 
 }
 
 generateWDCGetColumnDataJS <- function(col_name){
-  glue::glue('\"{col_name}": data[i].{col_name}')
+  as.character(glue::glue('\"{col_name}": data[i].{col_name}'))
 }

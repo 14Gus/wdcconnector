@@ -3,8 +3,8 @@
 generatePlumbedFile <- function(r_table, path = tempfile()){
 
   r_table <- rlang::enquo(r_table)
-  browser()
-  template <- readLines("templates/plumbed_data_template.R")
+
+  template <- getTemplate("plumbed_data_template.R")
 
   writeLines(whisker::whisker.render(template), con=path)
 

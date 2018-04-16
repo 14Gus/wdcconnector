@@ -6,4 +6,6 @@
     {{{get_data_js}}}
 
     tableau.registerConnector(myConnector);
+      {{{connector_js}}}
+
 })();

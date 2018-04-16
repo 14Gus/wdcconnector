@@ -1,4 +1,6 @@
 TABLEAU_TYPE_ENUM_BASE <- "tableau.dataTypeEnum."
+TABLEAU_COLUMN_ROLE_ENUM_BASE <- "tableau.columnRoleEnum."
+
 COLS_PREFIX <- "var cols = "
 
 
@@ -19,7 +21,10 @@ generateWDCColumnJS <- function(column_name, type){
 
   tableau_type_enum <- generateTableauTypeEnum(type)
 
+  tableau_column_role_enum <- generateTableauColumnRoleEnum(type)
+
   out <- glue::glue('id: "{column_name}",
+  columnType: {tableau_column_role_enum},
   dataType: {tableau_type_enum}')
 
   addBraces(bracketNewLines(out))
@@ -48,6 +53,23 @@ mapRTypeToTableau <- function(r_type){
          , stop(glue::glue("No corresponding tableau type found for {r_type}"))
          )
 
+}
+
+generateTableauColumnRoleEnum <- function(r_type){
+
+  tableau_type <- mapRTypeToTableauRoleType(r_type)
+
+  paste0(TABLEAU_COLUMN_ROLE_ENUM_BASE, tableau_type)
+
+}
+
+mapRTypeToTableauRoleType <- function(r_type){
+
+  switch(r_type,
+         "character" = "dimension"
+         , "factor" = "dimension"
+         , "measure"
+  )
 }
 
 

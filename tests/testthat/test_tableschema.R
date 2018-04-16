@@ -1,13 +1,11 @@
 context("table schema var")
 
 test_that("generates schema correctly",{
-  expected <-  'var tableSchema = {
-    id: "earthquakeFeed",
-    alias: "Earthquakes with magnitude greater than 4.5 in the last seven days",
-    columns: cols
-  }'
+  expected <-  "var tableSchema = {\nid: \"iris\",\ncolumns: cols\n}"
 
-  test_schema <- generateWDCSchemaJS(test_table)
+  test_schema <- generateWDCSchemaJS(iris)
 
   expect_equal(test_schema, expected)
+
+
 })

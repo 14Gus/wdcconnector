@@ -4,24 +4,29 @@
     myConnector.getSchema = function (schemaCallback) {
 
   var cols = [{
-id: "Sepal.Length",
+id: "Sepal_Length",
+columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Sepal.Width",
+id: "Sepal_Width",
+columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Petal.Length",
+id: "Petal_Length",
+columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Petal.Width",
+id: "Petal_Width",
+columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
 id: "Species",
+columnType: tableau.columnRoleEnum.dimension,
 dataType: tableau.dataTypeEnum.string
 }];
 
   var tableSchema = {
-id: "iris",
+id: "table",
 columns: cols
 };
 
@@ -36,10 +41,10 @@ columns: cols
     // Iterate over the JSON object
     for (var i = 0, len = data.length; i < len; i++) {
       tableData.push({
-        "Sepal.Length": data[i].Sepal.Length,
-"Sepal.Width": data[i].Sepal.Width,
-"Petal.Length": data[i].Petal.Length,
-"Petal.Width": data[i].Petal.Width,
+        "Sepal_Length": data[i].Sepal_Length,
+"Sepal_Width": data[i].Sepal_Width,
+"Petal_Length": data[i].Petal_Length,
+"Petal_Width": data[i].Petal_Width,
 "Species": data[i].Species
       });
     }
@@ -50,4 +55,11 @@ columns: cols
 };
 
     tableau.registerConnector(myConnector);
+      $(document).ready(function () {
+  $("#submitButton").click(function () {
+    tableau.connectionName ="table Table Feed";
+    tableau.submit();
+  });
+});
+
 })();
