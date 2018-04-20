@@ -1,5 +1,5 @@
 #' @get /data
 function() {
-  {{r_table}}
+  iris
 }
 

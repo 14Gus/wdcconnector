@@ -1,3 +1,5 @@
+#' @rdname generateWDCJS
+#' @export
 generateWDCGetDataJS <- function(table){
   col_names <- colnames(table)
 

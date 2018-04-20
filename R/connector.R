@@ -1,3 +1,5 @@
+#' @rdname generateWDCJS
+#' @export
 generateWDCConnectorJS <- function(table){
 
   table_name <- substitute(table)
