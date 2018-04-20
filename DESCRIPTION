@@ -8,7 +8,8 @@ Description: Generates dynamically the HTML and JS needed to serve up an R dataf
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Suggests: testthat
+Suggests: testthat,
+    dplyr
 Imports: glue,
     whisker,
     rlang,

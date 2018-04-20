@@ -1,7 +1,7 @@
 context("Columns var")
 
 test_that("columns created correctly",{
-  expected <- "var cols = [{\nid: \"Sepal.Length\",\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Sepal.Width\",\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Petal.Length\",\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Petal.Width\",\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Species\",\ndataType: tableau.dataTypeEnum.string\n}]"
+  expected <- "var cols = [{\nid: \"Sepal.Length\",\ncolumnType: tableau.columnRoleEnum.measure,\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Sepal.Width\",\ncolumnType: tableau.columnRoleEnum.measure,\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Petal.Length\",\ncolumnType: tableau.columnRoleEnum.measure,\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Petal.Width\",\ncolumnType: tableau.columnRoleEnum.measure,\ndataType: tableau.dataTypeEnum.float\n},{\nid: \"Species\",\ncolumnType: tableau.columnRoleEnum.dimension,\ndataType: tableau.dataTypeEnum.string\n}]"
 
   cols <- generateWDCColumnsJS(iris)
 
@@ -10,7 +10,7 @@ test_that("columns created correctly",{
 
 test_that("generates column correctly",{
 
-  expected <- "{\nid: \"id\",\ndataType: tableau.dataTypeEnum.string\n}"
+  expected <- "{\nid: \"id\",\ncolumnType: tableau.columnRoleEnum.dimension,\ndataType: tableau.dataTypeEnum.string\n}"
 
   col <- generateWDCColumnJS(column_name = "id",type = "character")
 

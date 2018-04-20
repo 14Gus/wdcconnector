@@ -4,25 +4,49 @@
     myConnector.getSchema = function (schemaCallback) {
 
   var cols = [{
-id: "Sepal_Length",
+id: "mpg",
 columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Sepal_Width",
+id: "cyl",
 columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Petal_Length",
+id: "disp",
 columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Petal_Width",
+id: "hp",
 columnType: tableau.columnRoleEnum.measure,
 dataType: tableau.dataTypeEnum.float
 },{
-id: "Species",
-columnType: tableau.columnRoleEnum.dimension,
-dataType: tableau.dataTypeEnum.string
+id: "drat",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "wt",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "qsec",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "vs",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "am",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "gear",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
+},{
+id: "carb",
+columnType: tableau.columnRoleEnum.measure,
+dataType: tableau.dataTypeEnum.float
 }];
 
   var tableSchema = {
@@ -41,11 +65,17 @@ columns: cols
     // Iterate over the JSON object
     for (var i = 0, len = data.length; i < len; i++) {
       tableData.push({
-        "Sepal_Length": data[i].Sepal_Length,
-"Sepal_Width": data[i].Sepal_Width,
-"Petal_Length": data[i].Petal_Length,
-"Petal_Width": data[i].Petal_Width,
-"Species": data[i].Species
+        "mpg": data[i].mpg,
+"cyl": data[i].cyl,
+"disp": data[i].disp,
+"hp": data[i].hp,
+"drat": data[i].drat,
+"wt": data[i].wt,
+"qsec": data[i].qsec,
+"vs": data[i].vs,
+"am": data[i].am,
+"gear": data[i].gear,
+"carb": data[i].carb
       });
     }
 

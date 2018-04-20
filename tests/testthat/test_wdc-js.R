@@ -1,7 +1,12 @@
 context("wdc js")
 
 test_that("Generate wdc js works",{
-  expected <- readLines(here::here("tests/test_wdcjs.js"))
 
-  expect_equal(expected, generateWDCJS(iris))
+  js_test_file_path <- here::here("tests/test_wdcjs.js")
+
+  expected <- removeCRLF(readChar(js_test_file_path, file.info(js_test_file_path)$size))
+
+  actual <- removeCRLF(generateWDCJS(mtcars))
+
+  expect_equal(expected, actual)
 })
