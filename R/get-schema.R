@@ -1,4 +1,5 @@
-
+#' @rdname generateWDCJS
+#' @export
 generateWDCGetSchemaJS <- function(table){
 
   cols <- generateWDCColumnsJS(table)
