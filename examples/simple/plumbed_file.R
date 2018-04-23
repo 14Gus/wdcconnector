@@ -3,7 +3,6 @@ function() {
   iris
 }
 
-
 #' @get /WDC
 #' @html
 function(){

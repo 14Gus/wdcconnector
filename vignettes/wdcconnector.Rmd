@@ -1,0 +1,123 @@
+---
+title: "Introduction to WDC Connector"
+author: "Angus Moir (angus.moir@bankofengland.co.uk)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This package provides a set of tools that allows R users to dynamically serve up tables and connect them to Tableau using Tableau's [Web Data Connector](https://tableau.github.io/webdataconnector/).
+
+To understand how it works we are going to serve up two classic R tables, `mtcars` and `iris` and connect to them in Tableau.
+
+## Quick start
+
+The quickest way to see the `wdcconnector` package in action is with an example:
+
+Tableau doesn't accept columns names containing full stops so we need to rename our `iris` columns.
+```{r}
+iris <- dplyr::rename(iris,
+                      Sepal_Length = Sepal.Length,
+                      Sepal_Width = Sepal.Width,
+                      Petal_Length=Petal.Length,
+                      Petal_Width=Petal.Width)
+
+```
+
+Let's generate some file paths that will be used so server our various files.
+
+```{r}
+js_wdc_server_path <- "wdcjs.js"
+js_wdc_dir_path <- file.path(here::here("examples"), "simple", js_wdc_server_path)
+
+html_path <- here::here("examples/simple/wdchtml.html")
+plumbed_file_path <- here::here("examples/simple/plumbed_file.R")
+```
+
+Create the javascript for our iris Web Data Connector
+```{r}
+wdcjs <- generateWDCJS(iris)
+wdcjs
+```
+
+And save that to disk
+```{r}
+writeLines(wdcjs, js_wdc_dir_path)
+```
+
+Create the WDC HMTL file
+```{r}
+wdchtml <- generateWDCHTML(js_wdc_server_path)
+wdchtml
+
+```
+
+And write it to disk
+```{r}
+writeLines(wdchtml, html_path)
+```
+
+Generate the file to be plumbed.
+```{r}
+writeLines(generatePlumbedFile(iris), plumbed_file_path)
+```
+
+Finally we need to serve the various file
+```{r}
+r <- plumber::plumb(plumbed_file_path)
+
+web_connector_html <- plumber::PlumberStatic$new("examples/simple")
+
+r$mount("/wdc", web_connector_html)
+
+r$run(port=8000)
+
+```
+
+
+Open up your version of Tableau and choose the Web Data Connector option.
+
+Copy and paste the following URL into the address bar:
+
+http://127.0.0.1:8000/wdchtml.html
+
+Click "Get R Data" when it becomes available.
+
+Update your data.
+
+## Overview of the Tableau Web Data Connector
+
+In order for Tableau to connect to a table in R dynamically, you need to build a [Web Data Connector](https://tableau.github.io/webdataconnector/) for that table. 
+
+This web data connector is a javascript object that contains 2 key user defined methods:
+
+- `getSchema` is going to define the column names, types and table name of your table.
+- `getData` is going to determine how Tableau should import table from your data served as a JSON into the table.
+
+To dynamically generate the `getSchema` method the `wdcconnector` package has a function:
+```{r}
+generateWDCGetSchemaJS(mtcars)
+```
+
+To dynamically generate the `getData` method the `wdcconnector` package has a function:
+```{r}
+generateWDCDataJS(mtcars)
+```
+
+Finally you need to register the web data connector as an object you have created and link it to the HTML interface.
+
+This can be generated using the function:
+```{r}
+generateWDCConnectorJS()
+```
+
