@@ -14,6 +14,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+devtools::load_all(here::here())
+
 ```
 
 This package provides a set of tools that allows R users to dynamically serve up tables and connect them to Tableau using Tableau's [Web Data Connector](https://tableau.github.io/webdataconnector/).
@@ -34,7 +37,7 @@ iris <- dplyr::rename(iris,
 
 ```
 
-Let's generate some file paths that will be used so server our various files.
+Let's generate some file paths that will be used to server our various files.
 
 ```{r}
 js_wdc_server_path <- "wdcjs.js"
@@ -73,7 +76,7 @@ writeLines(generatePlumbedFile(iris), plumbed_file_path)
 ```
 
 Finally we need to serve the various file
-```{r}
+```{r eval=FALSE}
 r <- plumber::plumb(plumbed_file_path)
 
 web_connector_html <- plumber::PlumberStatic$new("examples/simple")
@@ -87,13 +90,21 @@ r$run(port=8000)
 
 Open up your version of Tableau and choose the Web Data Connector option.
 
+![Web connector](here::here("vignettes/open_web_data_connector.png")
+
 Copy and paste the following URL into the address bar:
 
 http://127.0.0.1:8000/wdchtml.html
 
+![Web connector address bar](here::here("vignettes/enter_url_web_data_connector.png")
+
 Click "Get R Data" when it becomes available.
 
-Update your data.
+![Web connector get data](here::here("vignettes/get_r_data_snapshot.png")
+
+Update your data by clicking "Update now".
+
+![Web connector update now](here::here("vignettes/update_now_snapshot.png")
 
 ## Overview of the Tableau Web Data Connector
 
@@ -111,13 +122,14 @@ generateWDCGetSchemaJS(mtcars)
 
 To dynamically generate the `getData` method the `wdcconnector` package has a function:
 ```{r}
-generateWDCDataJS(mtcars)
+generateWDCGetDataJS(mtcars)
 ```
 
-Finally you need to register the web data connector as an object you have created and link it to the HTML interface.
+Finally you need to generate the javascript that registers the web data connector as an object you have created and link it to the HTML interface.
 
-This can be generated using the function:
+This can be generated separately using the function:
 ```{r}
-generateWDCConnectorJS()
+generateWDCConnectorJS(mtcars)
 ```
+
 
