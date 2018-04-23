@@ -23,5 +23,9 @@ writeLines(generatePlumbedFile(mtcars), plumbed_file_path)
 # Serve the file
 r <- plumber::plumb(plumbed_file_path)
 
+web_connector_html <- plumber::PlumberStatic$new("examples/simple")
+
+r$mount("/wdc", web_connector_html)
+
 r$run(port=8000)
 

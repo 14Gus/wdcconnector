@@ -1,5 +1,5 @@
 #' @get /data
 function() {
-  iris
+  mtcars
 }
 
