@@ -6,7 +6,7 @@ test_that("Generate wdc js works",{
 
   expected <- removeCRLF(readChar(js_test_file_path, file.info(js_test_file_path)$size))
 
-  actual <- removeCRLF(generateWDCJS(mtcars))
+  actual <- removeCRLF(generateWDCJS(mtcars, "mtcars"))
 
   expect_equal(expected, actual)
 })

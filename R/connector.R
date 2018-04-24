@@ -1,8 +1,6 @@
 #' @rdname generateWDCJS
 #' @export
-generateWDCConnectorJS <- function(table){
-
-  table_name <- substitute(table)
+generateWDCConnectorJS <- function(table_name){
 
   template <- getTemplate("WDC_connector_template.js")
 

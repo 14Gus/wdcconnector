@@ -50,7 +50,7 @@ dataType: tableau.dataTypeEnum.float
 }];
 
   var tableSchema = {
-id: "table",
+id: "mtcars",
 columns: cols
 };
 
@@ -58,7 +58,7 @@ columns: cols
 };
 
     myConnector.getData = function(table, doneCallback) {
-  $.getJSON("http://127.0.0.1:8000/data", function(resp) {
+  $.getJSON("http://127.0.0.1:8000/mtcars", function(resp) {
     var data = resp,
     tableData = [];
 
@@ -87,7 +87,7 @@ columns: cols
     tableau.registerConnector(myConnector);
       $(document).ready(function () {
   $("#submitButton").click(function () {
-    tableau.connectionName ="table Table Feed";
+    tableau.connectionName ="mtcars Table Feed";
     tableau.submit();
   });
 });

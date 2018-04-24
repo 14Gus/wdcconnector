@@ -1,15 +1,15 @@
 #' @rdname generateWDCJS
 #' @export
-generateWDCGetDataJS <- function(table){
+generateWDCGetDataJS <- function(table, table_name, server=LOCAL_HOST, port=DEFAULT_PORT, template= "WDC_getData_template.js"){
   col_names <- colnames(table)
 
   get_data_js <- lapply(col_names, generateWDCGetColumnDataJS)
 
   get_data_js <- paste0(get_data_js, collapse = ",\n")
 
-  data_URL <- "http://127.0.0.1:8000/data"
+  data_URL <- paste0(server, ":", port, "/", table_name)
 
-  template <- getTemplate("WDC_getData_template.js")
+  template <- getTemplate(template)
 
   whisker::whisker.render(template)
 

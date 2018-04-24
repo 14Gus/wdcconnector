@@ -21,6 +21,11 @@
 #' generates the code that connects the web data connector to interactivity on the HTML file.
 #'
 #' @param table A valid dataframe or other table like object in R
+#' @param table_name The name you wish to give to your table.
+#' @param server The server of the served file. Default is 127.0.0.1
+#' @param port The port of the served file. Default is 8000
+#' @param template Optional. A valid wdcconnector template.
+#'
 #'
 #' @export
 #' @examples
@@ -37,14 +42,14 @@
 #' # Generate the Connector javasript for the mtcars file
 #' generateWDCConnectorJS(mtcars)
 #'
-generateWDCJS <- function(table){
+generateWDCJS <- function(table, table_name, template= "WDC_template.js"){
 
-  template <- getTemplate("WDC_template.js")
+  template <- getTemplate(template)
 
 
-  data <- list( get_schema_js = generateWDCGetSchemaJS(table)
-                , get_data_js = generateWDCGetDataJS(table)
-                , connector_js = generateWDCConnectorJS(table)
+  data <- list( get_schema_js = generateWDCGetSchemaJS(table, table_name)
+                , get_data_js = generateWDCGetDataJS(table, table_name)
+                , connector_js = generateWDCConnectorJS(table_name)
                 )
 
   whisker::whisker.render(template, data)

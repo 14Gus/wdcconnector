@@ -1,14 +1,14 @@
 #' Generate the R file used by plumber to serve to generate the API.
 #'
-#' @param r_table Name of the table to be served. This should be saved in the local environment.
+#' @param table_name Name of the table to be served. This should be saved in the local environment.
 #'
 #' @export
 #' @example
 #' generatePlumbedFile(mtcars)
 
-generatePlumbedFile <- function(r_table){
+generatePlumbedFile <- function(table_name){
 
-  r_table <- substitute(r_table)
+  table_name <- substitute(table_name)
 
   template <- getTemplate("plumbed_data_template.R")
 

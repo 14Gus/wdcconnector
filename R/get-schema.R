@@ -1,12 +1,12 @@
 #' @rdname generateWDCJS
 #' @export
-generateWDCGetSchemaJS <- function(table){
+generateWDCGetSchemaJS <- function(table, table_name, port, server, template ="WDC_getSchema_template.js"){
 
   cols <- generateWDCColumnsJS(table)
 
-  schema <- generateWDCSchemaJS(table)
+  schema <- generateWDCSchemaJS(table_name)
 
-  template <- getTemplate("WDC_getSchema_template.js")
+  template <- getTemplate(template)
 
   whisker::whisker.render(template)
 
